@@ -146,7 +146,6 @@ if(!$this->session->userdata('location') ){
                                       <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
                                   <input type="hidden" name="device" value="Notebook">
-                                  <p>ตัวอย่าง 00-00-00-00-00-00</p>
                                 </form>
 
                             <?php

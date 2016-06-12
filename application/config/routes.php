@@ -64,13 +64,11 @@ $route['student/signout'] = 'student_page/signout';
 
 //////////PROFESSOR PAGE
 $route['professor'] = 'professor_page/index';
+$route['submit_detail'] = 'professor_page/submit_detail';
 
 //////////ADMIN PAGE
 $route['admin'] = 'admin';
 // $route['admin/log'] = 'admin';
 $route['admin/login'] = 'admin/login';
-$route['admin/manage'] = 'admin/manage';
-$route['admin/manage/(:any)'] = 'admin/adduser/$1';
 $route['admin/mac'] = 'admin/mac';
-$route['admin/mac/(:any)'] = 'admin/editmac/$1';
 $route['admin/user'] = 'admin/user';

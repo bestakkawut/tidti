@@ -9,7 +9,7 @@
         <div class="_1 col-xs-12 col-sm-4">
                 <h2 class="opensans bold">SrivijayaWifi <i class="fa fa-wifi wifi" aria-hidden="true"></i></h2>
 
-                <!-- <h3 class="opensans bold">e-passport</h3> -->
+                <h3 class="opensans bold">e-passport</h3>
                 <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเตอร์เน็ต</p>
                 <div class="footer">
                     <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
