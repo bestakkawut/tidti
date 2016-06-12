@@ -21,14 +21,27 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/index');
 	}
 
+	public function manage(){
+		$this->load->view('admin/admin_manage');
+	}
+
+	public function adduser($user){
+		$data = '';
+		$this->load->view('admin/admin_manage',array("data"=>$data));
+	}
+
 	public function mac()
 	{
 
-		$data = $this->DeviceModel->SelectDevice();
+		$data = $this->DeviceModel->SelectDevice(null);
 		// $data= '';
 		$this->load->view('admin/admin_mac_list',array('data'=> $data));
 	}
 
+	public function editmac($id){
+		$data = $this->DeviceModel->SelectDevice($id);
+		$this->load->view('admin/admin_edit_mac',array('data'=> $data));
+	}
 
 	public function login()
 	{
@@ -37,7 +50,8 @@ class Admin extends CI_Controller {
 
 	public function user()
 	{
-		$this->load->view('admin/admin_user');
+		$data = $this->DeviceModel->SelectUser();
+		$this->load->view('admin/admin_user',array('data'=> $data));
 	}
 
 	function signin($user,$pass){
