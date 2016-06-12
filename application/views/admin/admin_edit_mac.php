@@ -32,13 +32,17 @@
                 <input type="text" class="input thaisans" name="search" placeholder="ค้นหา" id="search">
                 <button class="button"><i class="fa fa-search"></i></button>
             </div>
+            <div class="cancle">
+                <button class="button thaisans">ยกเลิก</button>
+            </div>
+
             <table class="table table-hover">
                 <thead>
                     <th class="center">#</th>
-                    <th class="center">username</th>
-                    <th>mac address</th>
-                    <th>name</th>
-                    <th>date</th>
+                    <th class="center">หมายเลข mac</th>
+                    <th>ชื่อผู้ใช้</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>วันที่ลงทะเบียน</th>
                     <th class="center">
                         ...
                     </th>
@@ -50,14 +54,12 @@
                  ?>
                 <tr>
                     <td><i class="fa fa-<?=switchIcon($val->dev_type);?>" title="phone" aria-hidden="true"></i></td>
-                    <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td ><?=$val->macaddress?></td>
                     <td><?=$val->username?></td>
+                    <td><?=$val->pname." ".$val->firstname." ".$val->lastname?></td>
                     <td><?=$val->addtime?></td>
                     <td>
-                        <button title="ลบ"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        <button title="บล็อค"><i class="fa fa-lock" aria-hidden="true"></i></button>
-                        <button title="แก้ไข" onclick="window.location='<?=base_url().'admin/mac/'.$val->oid?>'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <h3>ข้อมูลเดิม</h3>
                     </td>
                 </tr>
 
@@ -65,6 +67,17 @@
                     }
                 ?>
             </table>
+            <div style="width: 400px;">
+                <div style="font-size: 2em" class="thaisans">
+                    <i class="fa fa-gears" title="phone" aria-hidden="true" style="color:#ff5f2e;display: inline"></i>
+                    <h3 class="bold" style="display:inline;font-size:1.5em">แก้ไข</h3>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">ชื่อ - นามสกุล</label>
+                    <input type="email" style="width: 30%" class="form-control" id="exampleInputEmail1" placeholder="คำนำหน้า">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+            </div>
         </div>
         <div class="_2">
 

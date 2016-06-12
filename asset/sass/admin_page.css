@@ -134,6 +134,16 @@
         background-color: #fff;
         border: 2px solid #004E66;
         color: #004E66; }
+    .admin > .content.mac_list > ._1 > .cancle {
+      margin: 25px 0;
+      height: 35px;
+      float: right; }
+      .admin > .content.mac_list > ._1 > .cancle > .button {
+        background-color: #ff5f2e;
+        border: 2px solid transparent;
+        color: #fff;
+        font-size: 1.5em;
+        padding: 0 20px; }
     .admin > .content.mac_list > ._1 > table > thead {
       background-color: #d9e1e8; }
       .admin > .content.mac_list > ._1 > table > thead > tr th {
@@ -143,6 +153,8 @@
         background-color: #004e66;
         color: #EFFFF9;
         width: 50px; }
+    .admin > .content.mac_list > ._1 > table > tbody > tr.edit {
+      color: #ff5f2e; }
     .admin > .content.mac_list > ._1 > table > tbody > tr {
       color: #004e66; }
       .admin > .content.mac_list > ._1 > table > tbody > tr > td {
@@ -156,8 +168,42 @@
         background-color: transparent;
         color: #ff5f2e;
         font-size: 1.2em;
+        width: 34px;
+        height: 30px;
         padding: 2px 8px; }
+      .admin > .content.mac_list > ._1 > table > tbody > tr td:last-child > h3 {
+        font-size: 1.2em;
+        color: #ff5f2e; }
   .admin > .content.mac_list > ._2 {
     padding: 0 0 0 30px;
     width: 25%;
     min-width: 200px; }
+  .admin > .content.manage .top {
+    margin-top: 20px;
+    background-color: #d9e1e8; }
+    .admin > .content.manage .top > h3 {
+      display: inline-block;
+      margin: 0;
+      padding: 10px 20px;
+      background-color: #ff5f2e; }
+  .admin > .content.manage .tab {
+    width: 130px;
+    padding: 10px 10px;
+    border: 2px solid #ccc;
+    display: inline-block;
+    text-align: center; }
+    .admin > .content.manage .tab > i {
+      margin: 5px 0;
+      display: block;
+      font-size: 5em; }
+  .admin > .content.manage .mid {
+    padding-top: 20px; }
+    .admin > .content.manage .mid .form {
+      width: 500px;
+      padding-top: 20px; }
+      .admin > .content.manage .mid .form .pname, .admin > .content.manage .mid .form .fname, .admin > .content.manage .mid .form .lname {
+        display: inline-block; }
+      .admin > .content.manage .mid .form .pname {
+        width: 100px; }
+      .admin > .content.manage .mid .form .fname, .admin > .content.manage .mid .form .lname {
+        width: 196px; }

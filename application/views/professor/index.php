@@ -13,27 +13,9 @@
 
                 <!-- /////////////////////////////////////////////////////
                 ในกรณีที่ข้อมูลไม่ได้กรอก ไม่เรียบร้อย -->
-            <?php
-            if($this->session->userdata('detail_exists') == false)
-            {
-            ?>
-
                 <div class="alert">
                     คุณยังไม่ได้กรอกข้อมูลส่วนตัว
                 </div>
-
-            <?php
-            }
-            else
-            {
-            ?>
-            
-                
-            
-            <?php
-            }
-            ?>    
-
 
 
                 <!-- /////////////////////////////////////////////////////
@@ -78,48 +60,21 @@
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
 <?php
-if($this->session->userdata('detail_exists') == false){
+if(!$this->session->userdata('location') ){
 ?>
 <div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
-                            <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
-                             <form method="post" action="submit_detail" class="form-group">
+                             <div class="form-group">
                                 <div class="form-group form-inline">
-                                    <select class="form-control" name="pname">
-                                        <option value="" disabled selected>*คำนำหน้า</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
-                                    </select>
-                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
-                                    <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
-                                </div>
-                                <div class="form-group form-inline">
-                                    <select class="form-control" name="department">
-                                        <option value="" disabled selected>*คณะ</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
-                                    </select>
-                                    <select class="form-control" name="branch">
-                                        <option value="" disabled selected>*สาขา</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
-                                    </select>
-                                    <select class="form-control" name="group">
-                                        <option value="" disabled selected>*กลุ่ม</option>
-                                        <option value="นาย">นาย</option>
-                                        <option value="นางสาว">นางสาว</option>
-                                        <option value="นาง">นาง</option>
-                                    </select>
+                                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
@@ -133,13 +88,42 @@ if($this->session->userdata('detail_exists') == false){
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-danger">บันทึก</button>
-                              </form>
+                              </div>
 </div>
+
+<?php
+}else{
+?>
+    <div class="alert alert-success" role="alert">วิทยาเขต <?php
+
+    switch ($this->session->userdata('location')) {
+        case 'sk':
+            echo "สงขลา";
+            break;
+        case 'sai':
+            echo "ไสใหญ่";
+            break;
+        case 'tho':
+            echo "ทุ่งใหญ่";
+            break;
+        case 'ka':
+            echo "ขนอม";
+            break;
+        case 'tr':
+            echo "ตรัง";
+            break;
+        case 'rat':
+            echo "วิทยาลัยรัตภูมิ";
+            break;
+
+    }
+
+    ?></div>
+
 
 <?php
 }
 ?>
-
 
                              <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">

@@ -121,6 +121,7 @@ function header_url()
 
         <script type="text/javascript" src="'.asset_url().'js/jquery.js"></script>
         <script type="text/javascript" src="'.asset_url().'bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="'.asset_url().'js/script.js"></script>
     </head>';
 }
 
@@ -132,6 +133,9 @@ function switchIcon($dev){
             break;
         case 'Notebook':
             return 'laptop';
+            break;
+         case 'Tablet':
+            return 'tablet';
             break;
 
         default:
