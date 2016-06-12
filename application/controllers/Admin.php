@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
 		 $this->load->model('Admin_dataModel');
 		 $this->load->model('MacModel');
 		 $this->load->model('DeviceModel');
+		 $this->load->model('RadSKOModel');
 
 	}
 
@@ -40,7 +41,8 @@ class Admin extends CI_Controller {
 
 	public function editmac($id){
 		$data = $this->DeviceModel->SelectDevice($id);
-		$this->load->view('admin/admin_edit_mac',array('data'=> $data));
+		$fac_data = $this->RadSKOModel->getFacData();
+		$this->load->view('admin/admin_edit_mac',array('data'=> $data,'fac_data'=>$fac_data));
 	}
 
 	public function login()
@@ -57,6 +59,22 @@ class Admin extends CI_Controller {
 	function signin($user,$pass){
 
 		$this->Admin_dataModel->Login($_POST['user'],$_POST['pass']);
+
+	}
+
+	public function submitdevice($person){
+		if($person == 'student'){
+
+		}elseif($person == 'professor'){
+
+		}elseif ($person == 'staff') {
+			# code...
+		}elseif ($person == 'special') {
+			# code...
+		}
+
+
+
 
 	}
 

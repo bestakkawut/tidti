@@ -19,12 +19,11 @@
 
         <div class="content">
             <ul class="menus thaisans">
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> จัดการ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
                 <a href="<?=base_url().'admin/user'?>"><li class="user active"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/history'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
-
             </ul>
-
         </div>
     </div>
     <div class="content mac_list">

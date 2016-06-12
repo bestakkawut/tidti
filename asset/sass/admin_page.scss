@@ -270,26 +270,46 @@
             background-color: #d9e1e8;
         }
         .tab{
-            width:  130px;
-            padding: 10px 10px;
-            border: 2px solid #ccc;
+            border: 2px solid #004e66;
             display: inline-block;
             text-align: center;
-            >i{
-                margin: 5px 0;
-                display: block;
-                font-size: 5em;
+            background-color: #FFFFF3;
+            width:  130px;
+
+            &.active {
+                border: 1px solid transparent;
+                background-color: #ff5f2e;
+                > a{
+                    color: #FFFFF3;
+                }
             }
+            >a{
+                display: block;
+                padding: 10px 10px;
+                color: #004e66;
+                text-decoration: none;
+                > i{
+                    margin: 5px 0;
+                    display: block;
+                    font-size: 3.5em;
+                }
+            }
+
+
         }
         .mid{
             padding-top: 20px;
+            padding-left: 30px;
             .form{
-                width: 500px;
-                padding-top: 20px;
+                width: 535px;
+                padding: 20px 15px;
+                color: #004e66;
+                background-color: #d9e1e8;
                 .pname,.fname,.lname{
                     display: inline-block;
                 }
                 .pname{
+                    padding-left: 5px;
                     width: 100px;
                 }
                 .fname,.lname{
@@ -298,6 +318,40 @@
             }
         }
 
+    }
+    .maclistedit{
+        .mid{
+            background-color: #d9e1e8;
+            >.head{
+                // background-color:   #ff5f2e;
+                font-size: 2em;
+                border-bottom:  1px solid aliceblue;
+                color: #ff5f2e;
+                >i{
+                    background-color:  #ff5f2e;
+                    padding: 5px 15px 5px 15px;
+                    border: 2px solid #ff5f2e;
+                    color:  aliceblue;
+                }
+            }
+        }
+        .form{
+            margin-left: 50px;
+                width: 535px;
+                padding: 20px 15px;
+                color: #004e66;
+
+                .pname,.fname,.lname{
+                    display: inline-block;
+                }
+                .pname{
+                    padding-left: 5px;
+                    width: 100px;
+                }
+                .fname,.lname{
+                    width: 196px;
+                }
+            }
     }
 
 }

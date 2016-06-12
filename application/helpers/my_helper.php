@@ -134,12 +134,41 @@ function switchIcon($dev){
         case 'Notebook':
             return 'laptop';
             break;
-         case 'Tablet':
+        case 'Tablet':
             return 'tablet';
+            break;
+        case 'Other':
+            return '';
             break;
 
         default:
             return false;
             break;
     }
+}
+
+function selectLocation($locate){
+    $arr = array(
+                "sk" => " ",
+                "sai" => " ",
+                "tho" => " ",
+                "ka" => " ",
+                "tr" => " ",
+                "rat" => " "
+            );
+    foreach ($arr as $key => $value) {
+        if($locate == $key){
+            $arr[$key] = "selected";
+            break;
+        }
+    }
+
+    echo '
+        <option value="-" disabled >วิทยาเขต</option>
+        <option value="sk" '.$arr["sk"].'>สงขลา</option>
+        <option value="sai" '.$arr["sai"].'>ไสใหญ่</option>
+        <option value="tho" '.$arr["tho"].'>ทุ่งใหญ่</option>
+        <option value="ka" '.$arr["ka"].'>ขนอม</option>
+        <option value="tr" '.$arr["tr"].'>ตรัง</option>
+        <option value="rat" '.$arr["rat"].'>วิทยาลัยรัตภูมิ</option>';
 }

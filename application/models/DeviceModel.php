@@ -39,5 +39,9 @@ class DeviceModel extends CI_Model {
         return $this->db->get()->result();
     }
 
+    function EditUser(){
+
+    }
+
 
 }

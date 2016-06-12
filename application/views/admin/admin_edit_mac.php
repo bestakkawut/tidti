@@ -19,6 +19,7 @@
 
         <div class="content">
             <ul class="menus thaisans">
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> จัดการ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
                 <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/history'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
@@ -26,12 +27,8 @@
         </div>
 
     </div>
-    <div class="content mac_list">
+    <div class="content mac_list maclistedit">
         <div class="_1">
-            <div class="search">
-                <input type="text" class="input thaisans" name="search" placeholder="ค้นหา" id="search">
-                <button class="button"><i class="fa fa-search"></i></button>
-            </div>
             <div class="cancle">
                 <button class="button thaisans">ยกเลิก</button>
             </div>
@@ -67,15 +64,94 @@
                     }
                 ?>
             </table>
-            <div style="width: 400px;">
-                <div style="font-size: 2em" class="thaisans">
-                    <i class="fa fa-gears" title="phone" aria-hidden="true" style="color:#ff5f2e;display: inline"></i>
-                    <h3 class="bold" style="display:inline;font-size:1.5em">แก้ไข</h3>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">ชื่อ - นามสกุล</label>
-                    <input type="email" style="width: 30%" class="form-control" id="exampleInputEmail1" placeholder="คำนำหน้า">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <div class="mid" >
+                <div class="head"><i class="fa fa-gears"></i> <span class="thaisans bold" style="margin-top: 0">แก้ไข</span></div>
+                <div class="form">
+                    <form method="post" action="admin/submitdevice/student">
+                    <div class="form-group">
+
+                        <label>ข้อมูลส่วนตัว</label>
+                        <div>
+                            <?php
+                                switch ($val->pname) {
+                                    case 'นาย':
+                                        $a = "selected";
+                                        $b = "";
+                                        $c = "";
+                                        break;
+                                    case 'นาง':
+                                        $a = "";
+                                        $b = "selected";
+                                        $c = "";
+                                        break;
+                                    case 'นางสาว':
+                                        $a = "";
+                                        $b = "";
+                                        $c = "selected";
+                                        break;
+                                    default:
+                                        return " ";
+                                        break;
+                                }
+                            ?>
+                            <select class="form-control pname" name="pname">
+                                <option value="" disabled selected>คำนำหน้า</option>
+                                <option value="นาย" <?=$a?> >นาย</option>
+                                <option value="นางสาว" <?=$b?>>นางสาว</option>
+                                <option value="นาง" <?=$c?>>นาง</option>
+                            </select>
+                            <input type="text" class="form-control fname" id="" placeholder="ชื่อ" value="<?=$val->firstname?>">
+                            <input type="text" class="form-control lname" id="" placeholder="สกุล" value="<?=$val->lastname?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="" placeholder="อีเมล์" value="<?=$val->mailaddr?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา" value="<?=$val->idcard?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="กลุ่ม">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="department">
+                            <option value="" disabled selected>คณะ</option>
+
+                        <?php
+                        foreach($fac_data as $fd)
+                        {
+                            // if($fd->FAC_NAME = $val->)
+                        ?>
+                            <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                        <?php
+                        }
+                        ?>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="สาขา">
+                    </div>
+                    <div class="form-group">
+                        <select name="location" class="form-control" >
+                            <?=selectLocation($val->location_id);?>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
+                        <input type="text" class="form-control" id="" placeholder="xx-xx-xx-xx-xx-xx" value="<?=$val->macaddress?>">
+                    </div>
+                    <div class="form-group">
+                        <select name="location" class="form-control">
+                            <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
+                            <option value="Phone">มือถือ</option>
+                            <option value="Notebook">โน๊ตบุ๊ค</option>
+                            <option value="Tablet">แท็บเล็ต</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
