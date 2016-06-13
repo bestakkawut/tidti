@@ -39,9 +39,26 @@ class DeviceModel extends CI_Model {
         return $this->db->get()->result();
     }
 
-    function EditUser(){
+    function EditDataDevice($where,$online_profile,$register_online,$device){
+        // var_dump($where);
+        // var_dump($online_profile);
+        // var_dump($register_online);
+        // var_dump($device);
+        $this->db->db_select('radius');
+
+        $this->db->where('oid', intval($where['oid']));
+        $this->db->update('register_online',$register_online);
+
+
+        $this->db->where('username', $where['username']);
+        $this->db->update('online_profile',$online_profile);
+
+        $this->db->where('UserName', $where['old_macaddress']);
+        $this->db->update('device',$device);
+
 
     }
+
 
 
 }

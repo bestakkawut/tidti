@@ -19,10 +19,10 @@
 
         <div class="content">
             <ul class="menus thaisans">
-                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> จัดการ </li></a>
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <a href="<?=base_url().'admin/user'?>"><li class="user active"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/history'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <!-- <a href="<?=base_url().'admin/user'?>"><li class="user active"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
+                <a href="<?=base_url().'admin/log?log='?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
         </div>
     </div>
@@ -45,12 +45,12 @@
                     </th>
                 </thead>
                 <?php
-
+                     $i=0;
                      foreach($data as $val){
 
                  ?>
                 <tr>
-                    <td></td>
+                    <td style="font-size: 1em;"><?=++$i;?></td>
                     <td ><?=$val->username?></td>
                     <td><?=$val->firstname.' '.$val->lastname?></td>
                     <td><?=$val->status?></td>

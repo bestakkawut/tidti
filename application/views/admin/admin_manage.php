@@ -19,10 +19,10 @@
 
         <div class="content">
             <ul class="menus thaisans">
-                <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> จัดการ </li></a>
+                <a href="<?=base_url().'admin/manage'?>"><li class="manage active"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> เพิ่มอุปกรณ์ผู้ใช้ </li></a>
                 <a href="<?=base_url().'admin/mac'?>"><li class="maclist"><span><i class="fa fa-list-ul" aria-hidden="true"></i></span> รายการ mac-address </li></a>
-                <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a>
-                <a href="<?=base_url().'admin/history'?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
+                <!-- <a href="<?=base_url().'admin/user'?>"><li class="user"><span><i class="fa fa-users" aria-hidden="true"></i></span> รายชื่อผู้ใช้ </li></a> -->
+                <a href="<?=base_url().'admin/log?log='?>"><li class="history "><span><i class="fa fa-history" aria-hidden="true"></i></span> ความเคลื่อนไหว </li></a>
             </ul>
         </div>
 
@@ -43,7 +43,7 @@
             <!-- นักศึกษา -->
             <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade form" id="student">
-                <form method="post" action="admin/submitdevice/student">
+                <form method="post" action="submitdevice/student">
                 <div class="form-group">
                     <h3 class="thaisans bold" style="margin-top: 0">นักศึกษา</h3>
                     <label>ข้อมูลส่วนตัว</label>
@@ -54,42 +54,82 @@
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <input type="text" class="form-control fname" id="" placeholder="ชื่อ">
-                        <input type="text" class="form-control lname" id="" placeholder="สกุล">
+                        <input type="text" name="firstname" class="form-control fname" id="" placeholder="ชื่อ">
+                        <input type="text" name="lastname" class="form-control lname" id="" placeholder="สกุล">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="" placeholder="อีเมล์">
+                    <input type="text" name="mailaddr" class="form-control" id="" placeholder="อีเมล์">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
+                    <input type="text" name="idcard" class="form-control" id="exampleInputEmail1" placeholder="รหัสนักศึกษา">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="กลุ่ม">
+                    <select class="form-control" name="group">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+                    <?php
+                    foreach($group_data as $gd)
+                    {
+                    ?>
+                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="คณะ">
+                    <select class="form-control" name="department">
+                        <option value="" disabled selected>*คณะ</option>
+
+                    <?php
+                    foreach($fac_data as $fd)
+                    {
+                    ?>
+                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="สาขา">
+                    <select class="form-control" name="branch">
+                            <option value="" disabled selected>*สาขา</option>
+
+                        <?php
+                        foreach($program_data as $pd)
+                        {
+                        ?>
+                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                        <?php
+                        }
+                        ?>
+
+                        </select>
                 </div>
                 <div class="form-group">
-                    <select name="location" class="form-control">
-                        <option label="วิทยาเขต" value="-" disabled selected>วิทยาเขต</option>
-                        <option value="sk">สงขลา</option>
-                        <option value="sai">ไสใหญ่</option>
-                        <option value="tho">ทุ่งใหญ่</option>
-                        <option value="ka">ขนอม</option>
-                        <option value="tr">ตรัง</option>
-                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                    <select name="location_id" class="form-control">
+                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                    <?php
+                    foreach($location_data as $ld)
+                    {
+                    ?>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                    <?php
+                    }
+                    ?>
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสอุปกรณ์ Mac Address</label>
-                    <input type="text" class="form-control" id="" placeholder="xx-xx-xx-xx-xx-xx">
+                    <input type="text" class="form-control" name="macaddress" placeholder="xx-xx-xx-xx-xx-xx">
                 </div>
                 <div class="form-group">
-                    <select name="location" class="form-control">
+                    <select name="dev_type" class="form-control">
                         <option label="อุปกรณ์" value="-" disabled selected>อุปกรณ์</option>
                         <option value="Phone">มือถือ</option>
                         <option value="Notebook">โน๊ตบุ๊ค</option>
@@ -124,23 +164,63 @@
                     <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="กลุ่ม">
+                    <select class="form-control" name="group">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+                    <?php
+                    foreach($group_data as $gd)
+                    {
+                    ?>
+                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="คณะ">
+                    <select class="form-control" name="department">
+                        <option value="" disabled selected>*คณะ</option>
+
+                    <?php
+                    foreach($fac_data as $fd)
+                    {
+                    ?>
+                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="สาขา">
+                    <select class="form-control" name="branch">
+                            <option value="" disabled selected>*สาขา</option>
+
+                        <?php
+                        foreach($program_data as $pd)
+                        {
+                        ?>
+                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                        <?php
+                        }
+                        ?>
+
+                        </select>
                 </div>
                 <div class="form-group">
                     <select name="location" class="form-control">
-                        <option label="วิทยาเขต" value="-" disabled selected>วิทยาเขต</option>
-                        <option value="sk">สงขลา</option>
-                        <option value="sai">ไสใหญ่</option>
-                        <option value="tho">ทุ่งใหญ่</option>
-                        <option value="ka">ขนอม</option>
-                        <option value="tr">ตรัง</option>
-                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                    <?php
+                    foreach($location_data as $ld)
+                    {
+                    ?>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                    <?php
+                    }
+                    ?>
+
                     </select>
                 </div>
                 <div class="form-group">
@@ -184,23 +264,63 @@
                     <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="กลุ่ม">
+                    <select class="form-control" name="group">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+                    <?php
+                    foreach($group_data as $gd)
+                    {
+                    ?>
+                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="คณะ">
+                    <select class="form-control" name="department">
+                        <option value="" disabled selected>*คณะ</option>
+
+                    <?php
+                    foreach($fac_data as $fd)
+                    {
+                    ?>
+                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="สาขา">
+                    <select class="form-control" name="branch">
+                            <option value="" disabled selected>*สาขา</option>
+
+                        <?php
+                        foreach($program_data as $pd)
+                        {
+                        ?>
+                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                        <?php
+                        }
+                        ?>
+
+                        </select>
                 </div>
                 <div class="form-group">
                     <select name="location" class="form-control">
-                        <option label="วิทยาเขต" value="-" disabled selected>วิทยาเขต</option>
-                        <option value="sk">สงขลา</option>
-                        <option value="sai">ไสใหญ่</option>
-                        <option value="tho">ทุ่งใหญ่</option>
-                        <option value="ka">ขนอม</option>
-                        <option value="tr">ตรัง</option>
-                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                    <?php
+                    foreach($location_data as $ld)
+                    {
+                    ?>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                    <?php
+                    }
+                    ?>
+
                     </select>
                 </div>
                 <div class="form-group">
@@ -244,23 +364,63 @@
                     <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="กลุ่ม">
+                    <select class="form-control" name="group">
+                            <option value="" disabled selected>*กลุ่ม</option>
+
+                    <?php
+                    foreach($group_data as $gd)
+                    {
+                    ?>
+                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="คณะ">
+                    <select class="form-control" name="department">
+                        <option value="" disabled selected>*คณะ</option>
+
+                    <?php
+                    foreach($fac_data as $fd)
+                    {
+                    ?>
+                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                    <?php
+                    }
+                    ?>
+
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="personid" class="form-control" id="exampleInputEmail1" placeholder="สาขา">
+                    <select class="form-control" name="branch">
+                            <option value="" disabled selected>*สาขา</option>
+
+                        <?php
+                        foreach($program_data as $pd)
+                        {
+                        ?>
+                            <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                        <?php
+                        }
+                        ?>
+
+                        </select>
                 </div>
                 <div class="form-group">
                     <select name="location" class="form-control">
-                        <option label="วิทยาเขต" value="-" disabled selected>วิทยาเขต</option>
-                        <option value="sk">สงขลา</option>
-                        <option value="sai">ไสใหญ่</option>
-                        <option value="tho">ทุ่งใหญ่</option>
-                        <option value="ka">ขนอม</option>
-                        <option value="tr">ตรัง</option>
-                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                    <?php
+                    foreach($location_data as $ld)
+                    {
+                    ?>
+                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                    <?php
+                    }
+                    ?>
+
                     </select>
                 </div>
                 <div class="form-group">

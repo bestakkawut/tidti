@@ -164,7 +164,7 @@
         }
         >._1{
             width: 100%;
-            >.search{
+            >.search form{
                 margin: 25px 0;
                 height: 35px;
                 float: left;
@@ -320,6 +320,17 @@
 
     }
     .maclistedit{
+        >._1{
+            >.showalert{
+                margin: 25px 0 0 0 ;
+                height: 35px;
+                width: 400px;
+                font-size: 1.5em;
+                padding: 3px 20px;
+                display: inline-block;
+                background-color: #d6e9c6
+            }
+        }
         .mid{
             background-color: #d9e1e8;
             >.head{
@@ -352,6 +363,47 @@
                     width: 196px;
                 }
             }
+    }
+
+    >.content.log{
+        >.board,.list{
+            float: left;
+        }
+        >.board{
+            >h2{
+                padding: 5px;
+                background-color: #004e66;
+                color: #FFFFF3;
+                font-size: 2em;
+            }
+            >.content{
+                width: 700px;
+                height: 700px;
+                padding: 10px 20px 15px 10px;
+                border: 1px solid #004e66;
+                font-size: 1.4em;
+                overflow-y: auto;
+            }
+        }
+        >.list{
+            >h3{
+                padding: 5px;
+                background-color: #ff5f2e;
+                color: #FFFFF3;
+            }
+            margin-left: 10px;
+            >.content{
+                overflow-y: auto;
+                font-size: 1.2em;
+                padding: 5px 10px;
+                height: 700px;
+                border: 1px solid #ff5f2e;
+                background-color: #d9e1e8;
+                >a{
+                    // color:#004e66;
+                }
+            }
+        }
     }
 
 }

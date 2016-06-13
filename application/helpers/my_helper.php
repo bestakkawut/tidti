@@ -137,6 +137,15 @@ function switchIcon($dev){
         case 'Tablet':
             return 'tablet';
             break;
+        case 'phone':
+            return 'mobile';
+            break;
+        case 'laptop':
+            return 'laptop';
+            break;
+        case 'tablet':
+            return 'tablet';
+            break;
         case 'Other':
             return '';
             break;
@@ -171,4 +180,26 @@ function selectLocation($locate){
         <option value="ka" '.$arr["ka"].'>ขนอม</option>
         <option value="tr" '.$arr["tr"].'>ตรัง</option>
         <option value="rat" '.$arr["rat"].'>วิทยาลัยรัตภูมิ</option>';
+}
+
+function selectDevice($dev){
+    $arr = array(
+                "Notebook" => " ",
+                "Phone" => " ",
+                "Tablet" => " ",
+                "Other" => " "
+            );
+    foreach ($arr as $key => $value) {
+        if($dev == $key){
+            $arr[$key] = "selected";
+            break;
+        }
+    }
+
+    echo '
+        <option value="-" disabled >วิทยาเขต</option>
+        <option value="Phone" '.$arr["Phone"].'>มือถือ</option>
+        <option value="Notebook" '.$arr["Notebook"].'>โน๊ตบุ๊ค</option>
+        <option value="Tablet" '.$arr["Tablet"].'>แท็บเล็ต</option>
+        <option value="Other" '.$arr["Other"].'>อื่นๆ</option>';
 }
