@@ -8,8 +8,6 @@
     <div class="login  col-md-offset-2 col-xs-12 col-sm-12 col-md-8 nopad">
         <div class="_1 col-xs-12 col-sm-4">
                 <h2 class="opensans bold">SrivijayaWifi <i class="fa fa-wifi wifi" aria-hidden="true"></i></h2>
-
-                <h3 class="opensans bold">e-passport</h3>
                 <p class=" thaisans">ลงทะเบียนอุปกรณ์เพื่อเข้าใช้งานอินเตอร์เน็ต</p>
                 <div class="footer">
                     <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
@@ -44,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="box col-xs-offset-1 col-xs-10 col-md-offset-1 nopad">
+                        <!--<div class="box col-xs-offset-1 col-xs-10 col-md-offset-1 nopad">
                             <div class="status"><h2 class="thaisans bold">สถานะ</h2></div>
                             <div>
                                 <input type="radio" name="radio" id="student" class="radio" value="0" checked/>
@@ -55,7 +53,7 @@
                                 <input type="radio" name="radio" id="teacher" class="radio" value="1" />
                                 <label for="teacher"><span class="thaisans">อาจารย์</span></label>
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
                         <div class="submit">

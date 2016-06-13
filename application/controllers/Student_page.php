@@ -50,8 +50,10 @@ class Student_page extends CI_Controller {
 
 	public function add_mac()
 	{			
-		if(!ctype_space($_POST['mac'])){
-			if($this->session->userdata('location') ){
+		if(ctype_space($_POST['mac']) == false && $_POST['mac'] != "")
+		{
+			if($this->session->userdata('location') )
+			{
 			
 			// $this->MacModel->AddData($this->session->userdata('id'),$_POST['device'],$_POST['mac']);
 			// AddLog(	$this->session->userdata('id')." is adding mac address" );
@@ -120,9 +122,9 @@ class Student_page extends CI_Controller {
 		$this->RadDeviceModel->DeleteDataByUsername($_POST['del']);
 		$this->RadRegisterOnlineModel->DeleteDataByMac($_POST['del']);
 		
-		$device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
+		// $device_data = $this->RadRegisterOnlineModel->GetDataByEpass('s'.$this->session->userdata('id'));
 		
-		if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
+		// if($device_data == null)$this->RadOnlineProfileModel->DeleteDataByStudentID($this->session->userdata('id'));
 		
 		AddLog(	$this->session->userdata('id')." was deleting his/her registered mac address" );
 		@header('Location: ' . $_SERVER['HTTP_REFERER']);

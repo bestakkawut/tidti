@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 		 	$this->load->model('RefModel');
 		 	$this->load->model('RadAccountModel');
 		 	$this->load->model('RadOnlineProfileModel');
-		 	$this->load->library('session');
+		 	$this->load->model('RadSKOModel');
 
 	 }
 
@@ -91,7 +91,10 @@ class Login extends CI_Controller {
 								$this->session->set_userdata('lastname',$sd->lastname);
 								$this->session->set_userdata('email',$sd->mailaddr);
 								$this->session->set_userdata('status',$sd->status);
-								$this->session->set_userdata('location',$sd->location_id);
+								$this->session->set_userdata('location',$this->RadSKOModel->getLocationDataByLocationID($sd->location_id)[0]->location_name);
+								$this->session->set_userdata('discipline',$sd->discipline);
+								$this->session->set_userdata('department',$this->RadSKOModel->getFacDataByFacID($sd->department)[0]->FAC_NAME);
+								$this->session->set_userdata('branch',$this->RadSKOModel->getProgramDataByProgramID($sd->prof_branch)[0]->PRO_NAME);
 							}
 						}
 						else
@@ -108,4 +111,5 @@ class Login extends CI_Controller {
 
 				}
 		}
+
 }

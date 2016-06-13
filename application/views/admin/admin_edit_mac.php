@@ -29,17 +29,19 @@
     </div>
     <div class="content mac_list maclistedit">
         <div class="_1">
-            <div class="showalert thaisans">
-                 <?php
+        <?php
                     if($_GET['stt'] == 1){
                 ?>
+            <div class="showalert thaisans">
+
 
                    แก้ไขเสร็จสิ้น
 
-                <?php
+
+            </div>
+            <?php
                 }
                 ?>
-            </div>
             <div class="cancle">
                 <button class="button thaisans" onclick="location.href = 'admin/mac'">กลับ</button>
             </div>
