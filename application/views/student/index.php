@@ -115,8 +115,9 @@ if(!$this->session->userdata('location') ){
 
                             <?php
                                 $data_exists = false;
+                                //var_dump($mac_data);
                                 foreach($mac_data as $data){
-                                    if($data->device=='comp')
+                                    if($data->device=='Notebook')
                                     {
                                         $data_exists = true;
                                         break;
@@ -127,11 +128,11 @@ if(!$this->session->userdata('location') ){
 
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php
@@ -144,7 +145,7 @@ if(!$this->session->userdata('location') ){
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="laptop" class="laptop"><i class="fa fa-laptop"></i></label>
                                   </div>
-                                  <input type="hidden" name="device" value="comp">
+                                  <input type="hidden" name="device" value="Notebook">
                                 </form>
 
                             <?php
@@ -159,7 +160,7 @@ if(!$this->session->userdata('location') ){
                             <?php
                             $data_exists = false;
                             foreach($mac_data as $data){
-                                if($data->device=='phone')
+                                if($data->device=='Phone')
                                 {
                                     $data_exists = true;
                                     break;
@@ -170,11 +171,11 @@ if(!$this->session->userdata('location') ){
 
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="mobile" class="mobile"><i class="fa fa-mobile active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php
@@ -188,7 +189,7 @@ if(!$this->session->userdata('location') ){
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="mobile" class="mobile"><i class="fa fa-mobile"></i></label>
                                   </div>
-                                  <input type="hidden" name="device" value="phone">
+                                  <input type="hidden" name="device" value="Phone">
                                 </form>
 
                             <?php
@@ -211,24 +212,23 @@ if(!$this->session->userdata('location') ){
                             <?php
                                     $data_exists = false;
                             foreach($mac_data as $data){
-                                if($data->device=='tablet')
+                                if($data->device=='Tablet')
                                 {
                                     $data_exists = true;
-                                    $data_mac = $data->mac;
+                                    $data_mac = $data->macaddress;
                                     break;
                                 }
                             }
                                 if($data_exists){
                             ?>
 
-
                                 <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->mac?>" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="<?=$data->macaddress?>" id="">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
-                                    <input type="hidden" name="del" value="<?=$data->mac?>">
+                                    <input type="hidden" name="del" value="<?=$data->macaddress?>">
                                 </form>
 
                             <?php
@@ -241,7 +241,7 @@ if(!$this->session->userdata('location') ){
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                       <label for="tablet" class="tablet"><i class="fa fa-tablet"></i></label>
                                   </div>
-                                  <input type="hidden" name="device" value="tablet">
+                                  <input type="hidden" name="device" value="Tablet">
                                 </form>
                             <?php
                                 }

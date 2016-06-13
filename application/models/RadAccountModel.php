@@ -8,18 +8,26 @@ class RadAccountModel extends CI_Model {
         parent::__construct();
     }
 
-    function Login(){
-        
+    function Login()
+    {   
         $this->db->db_select('radius');
         $this->db->select('*');
         return $this->db->get('account')->result();
-        
     }
     
-    function AddData($data){
+    function AddData($account_data,$device_data)
+    {
         $this->db->db_select('radius');
-        $this->db->insert('account', $data); 
-        echo "fuck";
+        $this->db->insert('account', $account_data); 
+        $this->db->insert('device', $device_data);   
+    }
+    
+    function GetDataByStudentId($studentid)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('idcard',$studentid);
+        return $this->db->get('account')->result();
     }
     
     function GetLocationDataByStudentId($studentid)
@@ -29,6 +37,24 @@ class RadAccountModel extends CI_Model {
         $this->db->where('idcard',$studentid);
         return $this->db->get('account')->result();
     }
+    
+    function getDataByFirstAndLastName($firstname,$lastname)
+    {
+        $this->db->db_select('radius');
+        $this->db->select('*');
+        $this->db->where('firstname',$firstname);
+        $this->db->where('lastname',$lastname);
+        return $this->db->get('account')->result();
+    }
 
+    function DeleteDataByIDCard($idcard,$username)
+    {
+        $this->db->db_select('radius');
+        $this->db->delete('account', array(
+            'idcard' => $idcard,
+            'username' => $username
+        )); 
+
+    }
 
 }

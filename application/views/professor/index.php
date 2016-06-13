@@ -13,9 +13,33 @@
 
                 <!-- /////////////////////////////////////////////////////
                 ในกรณีที่ข้อมูลไม่ได้กรอก ไม่เรียบร้อย -->
+            <?php
+            if($this->session->userdata('detail_exists') == false)
+            {
+            ?>
+
                 <div class="alert">
                     คุณยังไม่ได้กรอกข้อมูลส่วนตัว
                 </div>
+
+            <?php
+            }
+            else
+            {
+            ?>
+
+                <div class="name"><?=$this->session->userdata('prefix_name_id')?> <?= $this->session->userdata('firstname')?> <?=$this->session->userdata('lastname')?></div>
+                <div class="epassport">รหัส <?= $this->session->userdata('id')?></div>
+                <div class="faculty">คณะ <?=$this->session->userdata('department')?></div>
+                <div class="faculty">สาขา <?=$this->session->userdata('branch')?></div>
+                <div class="faculty"><?=$this->session->userdata('location')?></div>
+                <div class="faculty">email <?=$this->session->userdata('email')?></div>
+
+                <br>
+            <?php
+            }
+            ?>
+
 
 
                 <!-- /////////////////////////////////////////////////////
@@ -31,7 +55,7 @@
                 <div class="tel">โทร <?=$this->session->userdata('tel')?></div>
                 ///////////////////////////////////////////////////// -->
 
-                <a href="student/signout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
+                <a href="professor/logout" class="signout"><i class="fa fa-sign-out" title="ออกจากระบบ" aria-hidden="true"></i>&nbspออกจากระบบ</a>
             </div>
             <div class="footer">
                 <h2 class="thaisans">มีปัญหาติดต่อ งานวิศวกรรมเครือข่าย <br>สำนักวิทยบริการฯ</h2>
@@ -60,70 +84,93 @@
                         <div class="add-device">
                             <!--<div class="alert">alert</div>-->
 <?php
-if(!$this->session->userdata('location') ){
+if($this->session->userdata('detail_exists') == false){
 ?>
 <div class="alert alert-danger" role="alert">** กรุณากรอกข้อมูลก่อนกรอก Mac Address **
 
                             <h3 class="thaisans bold">ข้อมูลส่วนตัว</h3>
-                             <div class="form-group">
+                            <h3 class="thaisans bold">- <?=$this->session->userdata('username');?></h3>
+                             <form method="post" action="professor/submit_detail" class="form-group">
                                 <div class="form-group form-inline">
-                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
-                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
+                                    <select class="form-control" name="pname">
+                                        <option value="" disabled selected>*คำนำหน้า</option>
+                                        <option value="นาย">นาย</option>
+                                        <option value="นางสาว">นางสาว</option>
+                                        <option value="นาง">นาง</option>
+                                    </select>
+                                    <input type="text" name="firstname" class="form-control" id="exampleInputEmail3" placeholder="ชื่อ">
+                                    <input type="text" name="lastname" class="form-control" id="exampleInputPassword3" placeholder="นามสกุล">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                  </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                    <input type="text" name="citizen_id" class="form-control" id="exampleInputEmail1" placeholder="รหัสประจำตัวประชาชน">
+                                </div>
+                                <div class="form-group form-inline">
+                                    <select class="form-control" name="department">
+                                        <option value="" disabled selected>*คณะ</option>
+
+                                    <?php
+                                    foreach($fac_data as $fd)
+                                    {
+                                    ?>
+                                        <option value="<?=$fd->FAC_ID?>"><?=$fd->FAC_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                    <select class="form-control" name="branch">
+                                        <option value="" disabled selected>*สาขา</option>
+
+                                    <?php
+                                    foreach($program_data as $pd)
+                                    {
+                                    ?>
+                                        <option value="<?=$pd->PRO_ID?>"><?=$pd->PRO_NAME?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
+                                    <select class="form-control" name="group">
+                                            <option value="" disabled selected>*กลุ่ม</option>
+
+                                    <?php
+                                    foreach($group_data as $gd)
+                                    {
+                                    ?>
+                                        <option value="<?=$gd->gdesc?>"><?=$gd->gdesc?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <select name="location" class="form-control">
-                                        <option label="วิทยาเขต">วิทยาเขต</option>
-                                        <option value="sk">สงขลา</option>
-                                        <option value="sai">ไสใหญ่</option>
-                                        <option value="tho">ทุ่งใหญ่</option>
-                                        <option value="ka">ขนอม</option>
-                                        <option value="tr">ตรัง</option>
-                                        <option value="rat">วิทยาลัยรัตภูมิ</option>
+                                        <option value="" disabled selected>*วิทยาเขต</option>
+
+                                    <?php
+                                    foreach($location_data as $ld)
+                                    {
+                                    ?>
+                                        <option value="<?=$ld->location_id?>"><?=$ld->location_name?></option>
+                                    <?php
+                                    }
+                                    ?>
+
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-danger">บันทึก</button>
-                              </div>
+                              </form>
 </div>
-
-<?php
-}else{
-?>
-    <div class="alert alert-success" role="alert">วิทยาเขต <?php
-
-    switch ($this->session->userdata('location')) {
-        case 'sk':
-            echo "สงขลา";
-            break;
-        case 'sai':
-            echo "ไสใหญ่";
-            break;
-        case 'tho':
-            echo "ทุ่งใหญ่";
-            break;
-        case 'ka':
-            echo "ขนอม";
-            break;
-        case 'tr':
-            echo "ตรัง";
-            break;
-        case 'rat':
-            echo "วิทยาลัยรัตภูมิ";
-            break;
-
-    }
-
-    ?></div>
-
 
 <?php
 }
 ?>
+
 
                              <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
@@ -133,54 +180,76 @@ if(!$this->session->userdata('location') ){
 
 
 
-                                <form id="mac_submit" method="POST" action="student/addmac">
+                                <form id="mac_submit" method="POST" action="professor/addmac">
 
                                 <div class="dev">
                                     <h3 class="thaisans bold">เลือกอุปกรณ์</h3>
                                     <div class="select laptop">
-                                        <input type="radio" class="laptop" name="device" id="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
-                                        <input type="radio" class="phone" name="device" id="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
-                                        <input type="radio" class="tablet" name="device" id="taplet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                        <input type="radio" class="laptop" name="device" id="laptop" value="laptop"><label class="fa fa-laptop" for="laptop" title="โน๊ตบุ๊ค"></label>
+                                        <input type="radio" class="phone" name="device" id="phone" value="phone"><label class="fa fa-mobile" for="phone" title="มือถือ"></label>
+                                        <input type="radio" class="tablet" name="device" id="taplet" value="tablet"><label class="fa fa-tablet" for="taplet" title="แท็บเล็ต"></label>
+                                        <!-- <input type="radio" class="other" name="device" id="other" value="other"><label class="fa fa-tablet" for="other" title="อื่นๆ"></label> -->
                                     </div>
                                 </div>
                                   <div class="ch-device ">
-                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="">
+                                      <input type="text" class="text opensans" placeholder="mac-address" name="mac" id="laptop">
                                       <button class="button" type="submit"><i class="fa fa-plus-square-o"></i></button>
                                   </div>
-                                  <input type="hidden" name="device" value="comp">
+
                                 </form>
 
 
                                 <h3 class="thaisans bold">อุปกรณ์ของคุณ</h3>
                                  <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+
+                                 <?php
+                                 //var_dump($mac_data);
+
+                                 foreach($mac_data as $val)
+                                 {
+                                 ?>
+
+                                    <form method="POST" action="professor/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                        <div class="ch-device activated">
+                                            <input type="text" class="text opensans" disabled name="" value="<?=$val->macaddress?>" id="laptop">
+                                            <button class="button" type="submit"><i class="fa fa-trash-o"></i></button>
+                                            <label for="laptop" class="laptop"><i class="fa fa-<?=switchIcon($val->device)?> active"></i></label>
+                                        </div>
+                                        <input type="hidden" name="del" value="<?=$val->macaddress?>">
+                                    </form>
+
+                                 <?php
+                                 }
+                                 ?>
+
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="laptop" class="laptop"><i class="fa fa-laptop active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                                     <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="phone" class="phone"><i class="fa fa-mobile active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                                 <!-- ///////////////////// -->
-                                <form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
+                                <!--<form method="POST" action="student/deletemac" onsubmit="return confirm('Are you sure you want to submit this form?');">
                                     <div class="ch-device activated">
-                                        <input type="text" class="text opensans" disabled name="" value="" id="">
+                                        <input type="text" class="text opensans" disabled name="" value="" id="laptop">
                                         <button class="button"><i class="fa fa-trash-o"></i></button>
                                         <label for="tablet" class="tablet"><i class="fa fa-tablet active"></i></label>
                                     </div>
                                     <input type="hidden" name="del" value=">">
-                                </form>
+                                </form>-->
 
                         <!-- Modal -->
                         <div class="modal fade my-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
